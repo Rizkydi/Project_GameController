@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- font kanit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+    <div class="wrapper" id="wrapper">
+        <div class="form">
+            <div class="title">
+                Login In - KUIS 3
+            </div>
+                <div class="input_wrap">
+                    <label for=""> Username</label>
+                    <div class="input_field">
+                        <input type="text" class="input" id="username" placeholder="Username" onkeyup="user()">
+                        <p id="user"></p>
+                    </div>
+                </div>
+                <div class="input_wrap">
+                    <label for="">Password</label>
+                    <div class="input_field">
+                        <input type="password" class="input" id="password" placeholder="Password" onkeyup="pass()">
+                        <p id="passw"></p>
+                    </div>
+                </div>
+                <div class="input_wrap">
+                    <button id="login" onclick="login()">LOGIN</button>
+                </div>
+        </div>
+        <div class="image">
+            <img src="Game.png" alt="">
+        </div>
+    </div>
+
+    <div class="container" id="container">
+        <div style="position: absolute;">
+            <label for="" style="color: #52b3ec;">Username :</label>
+            <label id="hasilnama" style="color: #52b3ec;"></label>
+        </div>
+
+            <div id="game">
+                
+            </div>
+            <button onclick="reset()">Reset</button>
+    </div>
+
+    <script>
+      // Cek Username
+function user(){
+    if(document.getElementById('username').value != 'Iky adinugraha'){
+        document.getElementById('user').innerHTML = 'Wrong Username !';
+    }else{
+        document.getElementById('user').innerHTML = '';
+    }
+}
+
+// Cek Password
+function pass(){
+    if(document.getElementById('password').value != '132006'){
+        document.getElementById('passw').innerHTML = 'Wrong Password !';
+    }else{
+        document.getElementById('passw').innerHTML = '';
+    }
+}
+        // Submit Data & Cek Password
+function login() {
+    var username = document.getElementById('username').value
+    var password = document.getElementById('password').value
+
+    if(username == 'Iky adinugraha' && password == '132006'){
+        Swal.fire({
+            type: 'success',
+            title: 'Login Berhasil!',
+            text: 'Selamat Datang ' + username,
+            timer: 5000,
+            showCancelButton: false,
+            showConfirmButton: false,
+          })
+          var time;
+          time=setTimeout(profil,5000)
+          function profil(){
+              var wrapper = document.getElementById('wrapper')
+              var container = document.getElementById('container')  
+              document.getElementById('hasilnama').append(username)  
+              wrapper.style.display = 'none'
+              container.style.display = 'block'
+          }
+          startGame()
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Username & Password Salah'
+          })
+    }
+}
+// Game 
+var myGamePiece;
+
+function startGame() {
+    myGameArea.start();
+    myGamePiece = new component(30, 30, "#11998e", 10, 120);
+    let inputan = document.getElementById("username").value;
+
+    document.createElement("div").append(namadua);
+
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 670;
+        this.canvas.height = 370;
+        this.context = this.canvas.getContext("2d");
+        document.getElementById('game').insertBefore(this.canvas, document.getElementById('game').childNodes[0]);
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 20);
+        window.addEventListener('keydown', function (e) {
+            myGameArea.keys = (myGameArea.keys || []);
+            myGameArea.keys[e.keyCode] = (e.type == "keydown");
+        })
+        window.addEventListener('keyup', function (e) {
+            myGameArea.keys[e.keyCode] = (e.type == "keydown");            
+        })
+    }, 
+    clear : function(){
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+function component(width, height, color, x, y) {
+    this.gamearea = myGameArea;
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;        
+    }    
+}
+
+function updateGameArea() {
+    myGameArea.clear();
+    myGamePiece.speedX = 0;
+    myGamePiece.speedY = 0;    
+    if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -1; }
+    if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 1; }
+    if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -1; }
+    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 1; }
+    myGamePiece.newPos();    
+    myGamePiece.update();
+}
+
+    // reset
+    function reset(){
+      location.reload()
+    }
+    </script>
+</body>
+</html>

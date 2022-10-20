@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Kanit', sans-serif;
+	outline: none;
+	color: #5c4b51;
+}
+
+body{
+
+}
+
+.wrapper{
+	min-height: 100vh;
+	display: flex;
+}
+
+.form{
+    margin-left: 100px;
+    margin-top: 100px;
+	width: 425px;
+	height: auto;
+	background: #fff;
+	padding: 35px 50px;
+	border-radius: 2px;
+}
+
+.form .title{
+	text-align: center;
+	margin-bottom: 20px;
+	font-weight: 700;
+	font-size: 24px;
+}
+
+.form .input_wrap{
+	margin-bottom: 20px;
+	width: 325px;
+	position: relative;
+}
+
+.form .input_wrap:last-child{
+	margin-bottom: 0;
+}
+
+.form .input_wrap label{
+	display: block;
+	margin-bottom: 5px;
+}
+
+.form .input_wrap input{
+	padding: 15px;
+	width: 100%;
+	border: 1px solid transparent;
+	font-size: 16px;
+	border-radius: 3px;
+}
+
+.form .input_wrap .input{
+	background: #f5f4f4;
+	padding-right: 35px;
+}
+
+
+.form .input_wrap .input:focus{
+	border-color: #1dbf73;
+}
+
+.form .input_wrap .input_field{
+	position: relative;
+}
+
+.form .input_wrap .btn{
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	color: #fff;
+}
+
+.form .input_wrap .btn.disabled{
+	background: #727272;
+}
+
+.form .input_wrap .btn.enabled{
+	background: #1dbf73;
+	cursor: pointer;
+}
+
+
+#login{
+    width: 100%;
+    height: 60px;
+    color: #ffffff;
+    background-color: #5F9DF7;
+    font-size: 30px;
+    border-radius: 6px;
+    transition: .6s;
+    cursor: pointer;
+    margin-top: 10px;
+    border: none;
+}
+
+#login:hover{
+    transition: 0.6s ease;
+    background-color: black;
+}
+
+.image{
+    margin-left: 400px;
+    background-color: #5F9DF7;
+    width: 1000px;
+}
+
+.image img{
+    width: 550px;
+    margin-left: 280px;
+    margin-top: 150px;
+}
+
+.container{
+    margin-top: 100px;
+    padding: 10px 25px;
+    margin-left: 25%;
+    width: 700px;
+    height: 400px;
+    background-color: white;
+    display: none;
+    border-radius: 15px;
+}
+
+
+.container button{
+    width: 100%;
+    height: 60px;
+    color: #ffffff;
+    background-color: #5F9DF7;
+    font-size: 30px;
+    border-radius: 6px;
+    transition: .6s;
+    cursor: pointer;
+    margin-top: 10px;
+    border: none;
+}
+
+.container button:hover {
+    transition: 0.6s ease;
+    background-color: black;
+}
+
+canvas{
+    border: 1px solid #dedede;
+    background: #f1f1f1;
+}
+
+#passw,
+#user{
+    color: #f74040;
+}
